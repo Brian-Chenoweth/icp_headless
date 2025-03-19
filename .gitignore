@@ -37,3 +37,8 @@ yarn-error.log*
 *.tsbuildinfo
 
 .idea/
+
+# Local WP Engine directories
+app/
+conf/
+logs/
