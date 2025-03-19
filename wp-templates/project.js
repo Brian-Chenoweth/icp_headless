@@ -10,7 +10,7 @@ import {
   FeaturedImage,
   Main,
   SEO,
-} from '@components';
+} from '../components';
 
 import * as MENUS from '../constants/menus';
 import { BlogInfoFragment } from '../fragments/GeneralSettings';

@@ -3,18 +3,10 @@
   "rules": {
     "import/no-unresolved": 0,
     "no-unsafe-optional-chaining": 0,
-    "import/order": ["error", {"newlines-between": "always"}],
-    "no-undef": "off"
+    "import/order": ["error", {"newlines-between": "always"}]
   },
   "env": {
-    "es6": true,
-    "browser": true
-  },
-  "globals": {
-    "wp": "readonly",
-    "_": "readonly",
-    "Backbone": "readonly",
-    "jQuery": "readonly"
+    "es6": true
   },
   "ignorePatterns": ["schema.generated.*"]
 }

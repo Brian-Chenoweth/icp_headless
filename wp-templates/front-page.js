@@ -13,7 +13,7 @@ import {
   Footer,
   Posts,
   Testimonials,
-} from '@components';
+} from '../components';
 
 import styles from '../styles/pages/_Home.module.scss';
 import * as MENUS from '../constants/menus';

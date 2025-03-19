@@ -10,7 +10,7 @@ import {
   FeaturedImage,
   SEO,
   TaxonomyTerms,
-} from '@components';
+} from '../components';
 
 import * as MENUS from '../constants/menus';
 import { pageTitle } from '../utilities';

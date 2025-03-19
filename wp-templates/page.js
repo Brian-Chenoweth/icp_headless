@@ -1,4 +1,4 @@
-import * as MENUS from '@constants/menus';
+import * as MENUS from '../constants/menus';
 import { gql } from '@apollo/client';
 
 import { BlogInfoFragment } from '../fragments/GeneralSettings';

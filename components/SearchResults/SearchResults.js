@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { FormatDate, LoadingSearchResult } from '@components';
+import { FormatDate, LoadingSearchResult } from '../../components';
 import { FaSearch } from 'react-icons/fa';
 
 import styles from './SearchResults.module.scss';
