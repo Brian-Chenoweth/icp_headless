@@ -52,7 +52,7 @@ export default function Component() {
       <Main className={styles.home}>
         <EntryHeader image={mainBanner} />
         <div className="container">
-          <section className="hero text-center">
+          {/* <section className="hero text-center">
             <Heading className={styles.heading} level="h1">
               Welcome to your Blueprint
             </Heading>
@@ -68,8 +68,8 @@ export default function Component() {
                 LEARN MORE
               </Button>
             </div>
-          </section>
-          <section className="cta">
+          </section> */}
+          {/* <section className="cta">
             <CTA
               Button={() => (
                 <Button href="/posts">
@@ -83,14 +83,14 @@ export default function Component() {
                 requirements.
               </span>
             </CTA>
-          </section>
+          </section> */}
           <section className={styles.posts}>
             <Heading className={styles.heading} level="h2">
               Latest Posts
             </Heading>
             <Posts posts={data.posts?.nodes} id="posts-list" />
           </section>
-          <section className="cta">
+          {/* <section className="cta">
             <CTA
               Button={() => (
                 <Button href="/posts">
@@ -104,8 +104,8 @@ export default function Component() {
                 requirements.
               </span>
             </CTA>
-          </section>
-          <section className={styles.testimonials}>
+          </section> */}
+          {/* <section className={styles.testimonials}>
             <Heading className={styles.heading} level="h2">
               Testimonials
             </Heading>
@@ -113,7 +113,7 @@ export default function Component() {
               Here are just a few of the nice things our customers have to say.
             </p>
             <Testimonials testimonials={data?.testimonials?.nodes} />
-          </section>
+          </section> */}
         </div>
       </Main>
       <Footer menuItems={footerMenu} />
