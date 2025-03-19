@@ -68,47 +68,7 @@ export default function Footer({ menuItems }) {
                 </li>
               )}
 
-              {appConfig.socialLinks?.youtubeUrl && (
-                <li>
-                  <a
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={cx('social-icon-link')}
-                    href={appConfig.socialLinks.youtubeUrl}
-                  >
-                    <FaYoutube title="YouTube" className={cx('social-icon')} />
-                  </a>
-                </li>
-              )}
 
-              {appConfig.socialLinks?.githubUrl && (
-                <li>
-                  <a
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={cx('social-icon-link')}
-                    href={appConfig.socialLinks.githubUrl}
-                  >
-                    <FaGithub title="GitHub" className={cx('social-icon')} />
-                  </a>
-                </li>
-              )}
-
-              {appConfig.socialLinks?.linkedinUrl && (
-                <li>
-                  <a
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={cx('social-icon-link')}
-                    href={appConfig.socialLinks.linkedinUrl}
-                  >
-                    <FaLinkedinIn
-                      title="LinkedIn"
-                      className={cx('social-icon')}
-                    />
-                  </a>
-                </li>
-              )}
             </ul>
           </div>
         )}
