@@ -1,4 +1,3 @@
-import * as MENUS from '../constants/menus';
 
 import { gql } from '@apollo/client';
 import {
@@ -12,6 +11,8 @@ import {
   SEO,
   TaxonomyTerms,
 } from '@components';
+
+import * as MENUS from '../constants/menus';
 import { pageTitle } from '../utilities';
 import { BlogInfoFragment } from '../fragments/GeneralSettings';
 

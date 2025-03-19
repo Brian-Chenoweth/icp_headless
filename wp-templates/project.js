@@ -1,4 +1,3 @@
-import * as MENUS from '../constants/menus';
 
 import { gql } from '@apollo/client';
 import {
@@ -12,6 +11,8 @@ import {
   Main,
   SEO,
 } from '@components';
+
+import * as MENUS from '../constants/menus';
 import { BlogInfoFragment } from '../fragments/GeneralSettings';
 
 export default function Component(props) {

@@ -1,5 +1,6 @@
-import appConfig from '../app.config';
 import { useRef, useEffect, useState } from 'react';
+
+import appConfig from '../app.config';
 
 /**
  * The `useFocusFirstNewResult` hook provides the ability to set the focus

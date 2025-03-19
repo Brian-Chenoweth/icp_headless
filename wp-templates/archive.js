@@ -1,6 +1,6 @@
 import { gql, useQuery } from '@apollo/client';
-import { pageTitle } from '../utilities';
 
+import { pageTitle } from '../utilities';
 import * as MENUS from '../constants/menus';
 import { BlogInfoFragment } from '../fragments/GeneralSettings';
 import {

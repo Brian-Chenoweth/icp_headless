@@ -1,5 +1,6 @@
-const { withFaust, getWpHostname } = require('@faustwp/core');
 const path = require('path');
+
+const { withFaust, getWpHostname } = require('@faustwp/core');
 
 /**
  * @type {import('next').NextConfig}

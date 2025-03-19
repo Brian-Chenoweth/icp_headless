@@ -4,8 +4,8 @@ import {
   FaInstagram,
   FaTwitter,
 } from 'react-icons/fa';
-import appConfig from '../../app.config.js';
 
+import appConfig from '../../app.config.js';
 import { NavigationMenu } from '../';
 
 import styles from './Footer.module.scss';
