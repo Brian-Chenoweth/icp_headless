@@ -3,7 +3,7 @@
 ## Usage
 
 ```jsx
-import { LoadMore } from 'components';
+import { LoadMore } from '@components';
 const MyLoadMore = () => (
   <LoadMore
     hasNextPage={hasNextPage}

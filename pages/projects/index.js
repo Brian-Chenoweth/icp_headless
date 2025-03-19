@@ -1,4 +1,4 @@
-import * as MENUS from 'constants/menus';
+import * as MENUS from '@constants/menus';
 
 import { gql, useQuery } from '@apollo/client';
 import React from 'react';
@@ -12,9 +12,9 @@ import {
   Projects,
   SEO,
   NavigationMenu,
-} from 'components';
+} from '@components';
 import { getNextStaticProps } from '@faustwp/core';
-import { pageTitle } from 'utilities';
+import { pageTitle } from '@utilities';
 import { BlogInfoFragment } from 'fragments/GeneralSettings';
 import appConfig from 'app.config';
 

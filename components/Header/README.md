@@ -9,7 +9,7 @@ The site logo is pulled from `/public/logo.png`.
 ## Usage
 
 ```jsx
-import { Header } from 'components';
+import { Header } from '@components';
 
 const MyHeader = () => <Header />;
 ```

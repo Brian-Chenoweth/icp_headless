@@ -1,4 +1,4 @@
-import * as MENUS from 'constants/menus';
+import * as MENUS from '@constants/menus';
 
 import { gql, useQuery } from '@apollo/client';
 import { getNextStaticProps } from '@faustwp/core';
@@ -11,7 +11,7 @@ import {
   SearchResults,
   SEO,
   SearchRecommendations,
-} from 'components';
+} from '@components';
 import { BlogInfoFragment } from 'fragments/GeneralSettings';
 import { useState } from 'react';
 import { GetSearchResults } from 'queries/GetSearchResults';

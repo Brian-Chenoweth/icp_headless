@@ -7,7 +7,7 @@ Works as an abstraction on top of the `next/head` component.
 ## Usage
 
 ```jsx
-import { SEO } from 'components';
+import { SEO } from '@components';
 
 const MySEO = () => <SEO title={pageTitle(generalSettings, 'Search')} />;
 ```

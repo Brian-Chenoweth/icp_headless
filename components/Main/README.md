@@ -5,7 +5,7 @@ Renders a `main` component.
 ## Usage
 
 ```jsx
-import { Main } from 'components';
+import { Main } from '@components';
 
 const MyCTA = () => (
   <Main>

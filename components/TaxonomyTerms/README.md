@@ -5,7 +5,7 @@ Renders a list of taxonomy terms and term links for a given post.
 ## Usage
 
 ```jsx
-import { TaxonomyTerms } from 'components';
+import { TaxonomyTerms } from '@components';
 
 const MyTaxonomyTerms = () => (
   <TaxonomyTerms post={post} taxonomy={'categories'} />

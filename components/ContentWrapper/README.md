@@ -7,7 +7,7 @@ The ContentWrapper component uses an `article` element as a base.
 ## Usage
 
 ```jsx
-import { ContentWrapper } from 'components';
+import { ContentWrapper } from '@components';
 
 const MyWrapper = () => (
   <ContentWrapper content="<div>Hello</div>">

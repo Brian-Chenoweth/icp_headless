@@ -7,7 +7,7 @@ The button component can have different styles by using the `styleType` property
 ## Usage
 
 ```jsx
-import { Button } from 'components';
+import { Button } from '@components';
 
 const MyButton = () => <Button />;
 ```

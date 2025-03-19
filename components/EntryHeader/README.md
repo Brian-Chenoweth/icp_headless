@@ -5,7 +5,7 @@ Renders the page title, date, author, and featured image if supplied.
 ## Usage
 
 ```jsx
-import { EntryHeader } from 'components';
+import { EntryHeader } from '@components';
 
 const MyHeader = () => (
   <EntryHeader title="Home Page" image={image} date={date} author={author} />

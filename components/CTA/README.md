@@ -5,7 +5,7 @@ Renders a basic Call To Action (CTA) component.
 ## Usage
 
 ```jsx
-import { CTA } from 'components';
+import { CTA } from '@components';
 
 const MyCTA = () => <CTA Button={() => <button>Click</button>} />;
 ```

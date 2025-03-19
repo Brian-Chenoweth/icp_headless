@@ -6,7 +6,7 @@ perceived performance.
 ## Usage
 
 ```jsx
-import { LoadingSearchResult } from 'components';
+import { LoadingSearchResult } from '@components';
 
 const MyLoadingSearchResult = () => <LoadingSearchResult />;
 ```

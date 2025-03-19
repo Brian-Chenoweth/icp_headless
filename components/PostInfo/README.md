@@ -7,7 +7,7 @@ Renders a post publish date and author name in the following format:
 ## Usage
 
 ```jsx
-import { PostInfo } from 'components';
+import { PostInfo } from '@components';
 import styles from 'MyStyles.module.scss';
 
 const MyPostInfo = () => (

@@ -7,7 +7,7 @@ The appropriate level of the heading is controlled by the `level` property
 ## Usage
 
 ```jsx
-import { Heading } from 'components';
+import { Heading } from '@components';
 
 const MyHeading = () => <Heading level="h2">Head</Heading>;
 ```

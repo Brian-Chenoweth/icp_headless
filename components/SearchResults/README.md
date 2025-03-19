@@ -5,7 +5,7 @@ Renders an array of search results nodes. If the results are loading it render a
 ## Usage
 
 ```jsx
-import { SearchResults } from 'components';
+import { SearchResults } from '@components';
 
 const MySearchResults = () => (
   <SearchResults searchResults={searchResults} isLoading={isLoading} />

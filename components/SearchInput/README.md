@@ -5,7 +5,7 @@ Renders an array of search results nodes. If the results are loading it render a
 ## Usage
 
 ```jsx
-import { SearchInput } from 'components';
+import { SearchInput } from '@components';
 
 const MySearchInput = () => (
   <SearchInput value={value} onChange={handleOnChange} />

@@ -7,7 +7,7 @@ Internally it uses the GQty client to display the latests posts and categories.
 ## Usage
 
 ```jsx
-import { SearchRecommendations } from 'components';
+import { SearchRecommendations } from '@components';
 
 const MySearchRecommendations = () => (
   <SearchRecommendations recentPosts={recentPosts} categories={categories} />

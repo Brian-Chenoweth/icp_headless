@@ -5,7 +5,7 @@ Renders a general Blueprint Footer component.
 ## Usage
 
 ```jsx
-import { Footer } from 'components';
+import { Footer } from '@components';
 
 const MyFooter = () => <Footer menuItems={menuItems} />;
 ```

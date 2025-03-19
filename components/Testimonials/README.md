@@ -7,7 +7,7 @@ It uses `react-responsive-carousel` to render the Testimonials in a slider.
 ## Usage
 
 ```jsx
-import { Testimonials } from 'components';
+import { Testimonials } from '@components';
 
 const MyTestimonials = () => (
   <Testimonials testimonials={testimonials?.nodes} />

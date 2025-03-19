@@ -5,7 +5,7 @@ Renders the page title, summary and featured image for a project page.
 ## Usage
 
 ```jsx
-import { ProjectHeader } from 'components';
+import { ProjectHeader } from '@components';
 
 const MyProjectHeader = () => (
   <ProjectHeader title="Home Page" image={image} summary={summary} />

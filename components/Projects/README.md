@@ -5,7 +5,7 @@ Renders a list of project summaries.
 ## Usage
 
 ```jsx
-import { Projects } from 'components';
+import { Projects } from '@components';
 
 const MyProjects = () => <Projects projects={data?.nodes} id="projects-list" />;
 ```

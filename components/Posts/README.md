@@ -5,7 +5,7 @@ Renders a list of post summaries in a grid format.
 ## Usage
 
 ```jsx
-import { Posts } from 'components';
+import { Posts } from '@components';
 
 const MyPosts = () => <Posts posts={data?.nodes} id="posts-list" />;
 ```
