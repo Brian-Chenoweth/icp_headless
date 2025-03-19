@@ -1,0 +1,5 @@
+app/public/wp-includes/*
+app/public/wp-content/*
+node_modules/
+.next/
+out/
