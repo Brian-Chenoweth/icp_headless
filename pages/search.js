@@ -16,7 +16,7 @@ import { BlogInfoFragment } from '@fragments/GeneralSettings';
 import { useState } from 'react';
 import { GetSearchResults } from 'queries/GetSearchResults';
 import styles from 'styles/pages/_Search.module.scss';
-import config from "@config";
+import appConfig from "@config";
 
 export default function Page() {
   const [searchQuery, setSearchQuery] = useState('');
