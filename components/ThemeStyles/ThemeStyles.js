@@ -25,7 +25,7 @@ const themes = {
 };
 
 export default function ThemeStyles() {
-  const themeColor = appConfig?.themeColor ?? 'blue';
+  const themeColor = appConfig?.themeColor ?? 'green';
 
   return (
     // eslint-disable-next-line react/no-unknown-property
