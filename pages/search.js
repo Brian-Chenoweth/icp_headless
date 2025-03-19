@@ -12,11 +12,11 @@ import {
   SEO,
   SearchRecommendations,
 } from '@components';
-import { BlogInfoFragment } from 'fragments/GeneralSettings';
+import { BlogInfoFragment } from '@fragments/GeneralSettings';
 import { useState } from 'react';
 import { GetSearchResults } from 'queries/GetSearchResults';
 import styles from 'styles/pages/_Search.module.scss';
-import appConfig from 'app.config';
+import config from "@config";
 
 export default function Page() {
   const [searchQuery, setSearchQuery] = useState('');

@@ -4,8 +4,9 @@
     "paths": {
       "@components/*": ["components/*"],
       "@constants/*": ["constants/*"],
-      "@config/*": ["config/*"],
-      "@utils/*": ["utils/*"]
+      "@utilities/*": ["utilities/*"],
+      "@fragments/*": ["fragments/*"],
+      "@config": ["app.config.js"]  // ✅ FIXED: Points directly to file
     }
   }
 }

@@ -20,10 +20,11 @@ module.exports = withFaust({
   webpack: (config) => {
     config.resolve.alias = {
       ...config.resolve.alias,
-      '@components': path.resolve(__dirname, 'components'), // 👈 Fix alias
-      '@constants': path.resolve(__dirname, 'constants'),   // 👈 Add missing alias
-      '@config': path.resolve(__dirname, 'config'),         // 👈 Add missing alias
-      '@utils': path.resolve(__dirname, 'utils'),           // 👈 Add missing alias
+      "@components": path.resolve(__dirname, "components"),
+      "@constants": path.resolve(__dirname, "constants"),
+      "@config": path.resolve(__dirname, "app.config.js"), // ✅ FIXED: Pointing directly to file
+      "@utilities": path.resolve(__dirname, "utilities"), // Ensure correct alias
+      "@fragments": path.resolve(__dirname, "fragments"), // Add missing alias
     };
     return config;
   },

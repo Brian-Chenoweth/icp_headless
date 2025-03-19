@@ -15,8 +15,8 @@ import {
 } from '@components';
 import { getNextStaticProps } from '@faustwp/core';
 import { pageTitle } from '@utilities';
-import { BlogInfoFragment } from 'fragments/GeneralSettings';
-import appConfig from 'app.config';
+import { BlogInfoFragment } from '@fragments/GeneralSettings';
+import config from "@config";
 
 export default function Page() {
   const { data, loading, fetchMore } = useQuery(Page.query, {
