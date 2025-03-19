@@ -1,4 +1,4 @@
-import * as MENUS from 'constants/menus';
+import * as MENUS from '../constants/menus';
 
 import { gql } from '@apollo/client';
 import {
@@ -11,9 +11,9 @@ import {
   FeaturedImage,
   SEO,
   TaxonomyTerms,
-} from 'components';
-import { pageTitle } from 'utilities';
-import { BlogInfoFragment } from 'fragments/GeneralSettings';
+} from '@components';
+import { pageTitle } from '../utilities';
+import { BlogInfoFragment } from '../fragments/GeneralSettings';
 
 export default function Component(props) {
   // Loading state for previews

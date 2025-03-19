@@ -1,4 +1,4 @@
-import * as SELECTORS from 'constants/selectors';
+import * as SELECTORS from '@constants/selectors';
 
 import styles from './Main.module.scss';
 

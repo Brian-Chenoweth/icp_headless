@@ -1,5 +1,5 @@
 import React from 'react';
-import { FeaturedImage, Heading } from 'components';
+import { FeaturedImage, Heading } from '@components';
 import className from 'classnames/bind';
 
 import styles from './ProjectHeader.module.scss';

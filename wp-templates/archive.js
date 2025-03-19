@@ -1,5 +1,5 @@
 import { gql, useQuery } from '@apollo/client';
-import { pageTitle } from 'utilities';
+import { pageTitle } from '../utilities';
 
 import * as MENUS from '../constants/menus';
 import { BlogInfoFragment } from '../fragments/GeneralSettings';
@@ -14,7 +14,7 @@ import {
   FeaturedImage,
   SEO,
 } from '../components';
-import appConfig from 'app.config';
+import appConfig from '../app.config';
 
 export default function Archive(props) {
   const { uri, name, __typename } = props.data.nodeByUri;

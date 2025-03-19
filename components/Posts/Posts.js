@@ -2,9 +2,9 @@ import React from 'react';
 import { gql } from '@apollo/client';
 import classNames from 'classnames/bind';
 import Link from 'next/link';
-import { Heading, FeaturedImage, PostInfo } from 'components';
-import appConfig from 'app.config';
-import useFocusFirstNewResult from 'hooks/useFocusFirstNewResult';
+import { Heading, FeaturedImage, PostInfo } from '@components';
+import appConfig from '../../app.config';
+import useFocusFirstNewResult from '../../hooks/useFocusFirstNewResult';
 
 import styles from './Posts.module.scss';
 let cx = classNames.bind(styles);
