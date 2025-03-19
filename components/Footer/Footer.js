@@ -1,11 +1,8 @@
 import classNames from 'classnames/bind';
 import {
   FaFacebookF,
-  FaGithub,
   FaInstagram,
-  FaLinkedinIn,
   FaTwitter,
-  FaYoutube,
 } from 'react-icons/fa';
 import appConfig from 'app.config.js';
 
