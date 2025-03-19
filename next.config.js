@@ -25,6 +25,7 @@ module.exports = withFaust({
       "@config": path.resolve(__dirname, "app.config.js"), // ✅ FIXED: Pointing directly to file
       "@utilities": path.resolve(__dirname, "utilities"), // Ensure correct alias
       "@fragments": path.resolve(__dirname, "fragments"), // Add missing alias
+      '@queries': path.resolve(__dirname, 'queries'), // ✅ Fix alias
     };
     return config;
   },
