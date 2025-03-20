@@ -13,6 +13,7 @@ import {
   Footer,
   Posts,
   Testimonials,
+  LoadMore,
 } from '../components';
 
 import styles from '../styles/pages/_Home.module.scss';
@@ -89,6 +90,7 @@ export default function Component() {
               Latest Posts
             </Heading> */}
             <Posts posts={data.posts?.nodes} id="posts-list" />
+            <LoadMore />
           </section>
           {/* <section className="cta">
             <CTA
