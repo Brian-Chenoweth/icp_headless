@@ -64,6 +64,11 @@ function Posts({ posts, intro, id }) {
                     </a>
                   </Link>
                 </Heading>
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: post?.excerpt,
+                  }}
+                ></div>
                 <PostInfo
                   className={cx('info')}
                   author={post?.author?.node?.name}
@@ -87,6 +92,9 @@ Posts.fragments = {
       date
       uri
       title
+      ... on NodeWithExcerpt {
+        excerpt
+      }
       author {
         node {
           name

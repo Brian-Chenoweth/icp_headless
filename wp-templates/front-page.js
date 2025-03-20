@@ -19,7 +19,7 @@ import styles from '../styles/pages/_Home.module.scss';
 import * as MENUS from '../constants/menus';
 import { BlogInfoFragment } from '../fragments/GeneralSettings';
 
-const postsPerPage = 3;
+const postsPerPage = 8;
 
 export default function Component() {
   const { data, loading } = useQuery(Component.query, {
@@ -85,9 +85,9 @@ export default function Component() {
             </CTA>
           </section> */}
           <section className={styles.posts}>
-            <Heading className={styles.heading} level="h2">
+            {/* <Heading className={styles.heading} level="h2">
               Latest Posts
-            </Heading>
+            </Heading> */}
             <Posts posts={data.posts?.nodes} id="posts-list" />
           </section>
           {/* <section className="cta">

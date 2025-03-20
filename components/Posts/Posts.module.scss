@@ -7,9 +7,9 @@
   row-gap: 6rem;
   margin-bottom: 6rem;
 
-  @media (min-width: $breakpoint-small) {
-    grid-template-columns: repeat(3, 1fr);
-  }
+  // @media (min-width: $breakpoint-small) {
+  //   grid-template-columns: repeat(3, 1fr);
+  // }
 }
 
 .info {
@@ -51,6 +51,6 @@
   margin-bottom: 3rem;
 
   @media (min-width: $breakpoint-small) {
-    aspect-ratio: 1 / 1;
+    // aspect-ratio: 1 / 1;
   }
 }
