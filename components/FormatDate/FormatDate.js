@@ -7,7 +7,7 @@ export default function FormatDate({ date }) {
 
   const timeformat = {
     year: 'numeric',
-    month: 'long',
+    month: 'short',
     day: 'numeric',
     hour12: false,
   };

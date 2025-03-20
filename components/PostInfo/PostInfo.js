@@ -13,13 +13,15 @@ export default function PostInfo({ className, author, date }) {
 
   return (
     <div className={className}>
+      {author && <span>{author}</span>}
+      <br/>
       {date && (
         <time dateTime={date}>
           <FormatDate date={date} />
         </time>
       )}
       {date && author && <>&nbsp;</>}
-      {author && <span>By {author}</span>}
+
     </div>
   );
 }

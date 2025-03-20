@@ -2,27 +2,34 @@
 
 .post-list {
   display: grid;
-  grid-template-columns: repeat(1, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   column-gap: 5rem;
   row-gap: 6rem;
   margin-bottom: 6rem;
+  
+  @media (max-width: $breakpoint-medium) {
+    grid-template-columns: repeat(1, 1fr);
+  }
 
-  // @media (min-width: $breakpoint-small) {
-  //   grid-template-columns: repeat(3, 1fr);
-  // }
 }
 
 .info {
   font-size: 1.2rem;
   line-height: 1.5rem;
-  text-transform: uppercase;
+  margin-top: 1rem;
 }
 
 .container {
   width: 100%;
   display: flex;
-  text-align: center;
+  // text-align: center;
   justify-content: center;
+  &:nth-child(n+3) {
+    grid-column: span 2;
+  }
+  @media (max-width: $breakpoint-medium) {
+    grid-column: span 2;
+  }
 }
 
 .card {
@@ -33,7 +40,7 @@
 
 .header {
   margin-bottom: 1rem;
-  padding: 0 2rem;
+  padding: 0;
 
   a:hover,
   a:focus {
@@ -48,7 +55,7 @@
 }
 
 .image-holder {
-  margin-bottom: 3rem;
+  margin-bottom: 1rem;
 
   @media (min-width: $breakpoint-small) {
     // aspect-ratio: 1 / 1;

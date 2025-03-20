@@ -11,6 +11,22 @@ import styles from './Posts.module.scss';
 let cx = classNames.bind(styles);
 
 /**
+ * Truncates an excerpt, stripping HTML tags and limiting its length.
+ * @param {string} excerpt The HTML excerpt to truncate.
+ * @param {number} length The max length of the plain text excerpt.
+ * @returns {string} The truncated excerpt.
+ */
+function truncateExcerpt(excerpt, length = 100) {
+  if (!excerpt) return '';
+  
+  // Remove HTML tags safely using regex
+  const textContent = excerpt.replace(/<[^>]+>/g, ''); 
+
+  return textContent.length > length ? textContent.substring(0, length) + '...' : textContent;
+}
+
+
+/**
  * Renders a list of Post items
  * @param {Props} props The props object.
  * @param {Post[]} props.posts The array of post items.
@@ -66,7 +82,7 @@ function Posts({ posts, intro, id }) {
                 </Heading>
                 <div
                   dangerouslySetInnerHTML={{
-                    __html: post?.excerpt,
+                    __html: truncateExcerpt(post?.excerpt, 150),
                   }}
                 ></div>
                 <PostInfo

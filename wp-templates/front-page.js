@@ -20,10 +20,10 @@ import styles from '../styles/pages/_Home.module.scss';
 import * as MENUS from '../constants/menus';
 import { BlogInfoFragment } from '../fragments/GeneralSettings';
 
-const postsPerPage = 8;
+const postsPerPage = 10;
 
 export default function Component() {
-  const { data, loading } = useQuery(Component.query, {
+  const { data, loading, fetchMore } = useQuery(Component.query, {
     variables: Component.variables(),
   });
   if (loading) {
@@ -90,7 +90,13 @@ export default function Component() {
               Latest Posts
             </Heading> */}
             <Posts posts={data.posts?.nodes} id="posts-list" />
-            <LoadMore />
+            <LoadMore
+              className="text-center"
+              hasNextPage={data.nodeByUri?.contentNodes?.pageInfo.hasNextPage}
+              endCursor={data.nodeByUri?.contentNodes?.pageInfo.endCursor}
+              isLoading={loading}
+              fetchMore={fetchMore}
+            />
           </section>
           {/* <section className="cta">
             <CTA

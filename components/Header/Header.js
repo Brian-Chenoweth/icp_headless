@@ -40,6 +40,7 @@ export default function Header({ className, menuItems }) {
                 />
               </a>
             </Link>
+            {/* <div><p>An inside look at living, studying and working at Cal Poly.</p></div> */}
           </div>
           <button
             type="button"
