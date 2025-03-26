@@ -3,8 +3,8 @@
 .post-list {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  column-gap: 5rem;
-  row-gap: 6rem;
+  column-gap: 3rem;
+  row-gap: 5rem;
   margin-bottom: 6rem;
   
   @media (max-width: $breakpoint-medium) {
@@ -17,6 +17,18 @@
   font-size: 1.2rem;
   line-height: 1.5rem;
   margin-top: 1rem;
+  span {
+    color: rgb(73, 126, 107);
+    margin-bottom: 0px;
+    line-height: 1.5;
+    font-size: 15px;
+  }
+  time {
+    color: rgba(0, 0, 0, 0.54);
+    margin-bottom: 0px;
+    line-height: 1.5;
+    font-size: 15px;
+  }
 }
 
 .container {
