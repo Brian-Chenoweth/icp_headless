@@ -40,8 +40,8 @@ export default function Header({ className, menuItems }) {
                 />
               </a>
             </Link>
-            {/* <div><p>An inside look at living, studying and working at Cal Poly.</p></div> */}
           </div>
+          {/* <div><p>An inside look at living, studying and working at Cal Poly.</p></div> */}
           <button
             type="button"
             className={cx('nav-toggle')}
@@ -52,7 +52,7 @@ export default function Header({ className, menuItems }) {
           >
             <FaBars />
           </button>
-          <NavigationMenu
+          {/* <NavigationMenu
             id={cx('primary-navigation')}
             className={navClasses}
             menuItems={menuItems}
@@ -64,9 +64,26 @@ export default function Header({ className, menuItems }) {
                 </a>
               </Link>
             </li>
-          </NavigationMenu>
+          </NavigationMenu> */}
         </div>
       </div>
+      <div className="navbar">
+        <div className="container">
+          <NavigationMenu
+              id={cx('primary-navigation')}
+              className={navClasses}
+              menuItems={menuItems}
+            >
+              <li>
+                <Link legacyBehavior href="/search">
+                  <a>
+                    <FaSearch title="Search" role="img" />
+                  </a>
+                </Link>
+              </li>
+            </NavigationMenu>
+            </div>
+        </div>
     </header>
   );
 }

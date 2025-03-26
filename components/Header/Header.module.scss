@@ -3,7 +3,7 @@
 .header {
   color: var(--color-white);
   background-color: var(--color-primary);
-  z-index: -100;
+  // z-index: -100;
   // background-image: "/public/static/bkgd-inside-calpoly-upd.jpg";
   background-image: url('/static/bkgd-inside-calpoly-upd.jpg');
   background-position: center center;
@@ -14,8 +14,12 @@
 
 }
 
+.navbar {
+  background-color: pink;
+}
+
 .bar {
-  display: flex;
+  // display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
   padding: 3rem 0;
@@ -23,7 +27,7 @@
 }
 
 .logo {
-  width: 200px;
+  width: 275px;
   height: auto;
 }
 
