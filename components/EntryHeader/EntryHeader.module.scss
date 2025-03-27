@@ -35,6 +35,8 @@
 .image {
   display: block;
   position: relative;
+  
+
 
   &:before {
     content: ' ';
@@ -50,4 +52,6 @@
 
 .featured-image {
   margin: 0;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
 }

@@ -5,6 +5,13 @@
   margin: 0 auto;
   line-height: 1.6875;
 
+  p {
+    letter-spacing: 0.35px;
+    line-height: 3.35rem;
+    font-size: 1.8rem;
+    font-family: Merriweather, serif;
+  }
+
   :global {
     * {
       max-width: 100%;
