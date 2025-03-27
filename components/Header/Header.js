@@ -1,14 +1,11 @@
 import { useState } from 'react';
 import classNames from 'classnames/bind';
-import { FaBars, FaSearch } from 'react-icons/fa';
 import Image from 'next/image';
 import Link from 'next/link';
-import appConfig from '../../app.config.js';
 import { NavigationMenu, SkipNavigationLink } from '../';
 import {
-  FaFacebookF,
-  FaInstagram,
-  FaTwitter,
+  FaBars,
+  FaSearch, 
 } from 'react-icons/fa';
 import styles from './Header.module.scss';
 let cx = classNames.bind(styles);

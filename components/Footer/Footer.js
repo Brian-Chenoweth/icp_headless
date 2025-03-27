@@ -6,7 +6,7 @@ import {
   FaInstagram,
   FaXTwitter,
 } from 'react-icons/fa6';
-import { FaBars, FaSearch } from 'react-icons/fa';
+import { FaSearch } from 'react-icons/fa';
 import appConfig from '../../app.config.js';
 import { NavigationMenu } from '../';
 
@@ -20,7 +20,7 @@ let cx = classNames.bind(styles);
  */
 export default function Footer({ menuItems }) {
 
-  const [isNavShown, setIsNavShown] = useState(false);
+  const [isNavShown] = useState(false);
   const navClasses = cx(
     'primary-navigation',
     isNavShown ? cx('show') : undefined
