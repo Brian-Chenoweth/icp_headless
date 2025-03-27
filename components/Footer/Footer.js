@@ -1,10 +1,12 @@
+import { useState } from 'react';
+import Link from 'next/link';
 import classNames from 'classnames/bind';
 import {
   FaFacebookF,
   FaInstagram,
-  FaTwitter,
-} from 'react-icons/fa';
-
+  FaXTwitter,
+} from 'react-icons/fa6';
+import { FaBars, FaSearch } from 'react-icons/fa';
 import appConfig from '../../app.config.js';
 import { NavigationMenu } from '../';
 
@@ -17,6 +19,14 @@ let cx = classNames.bind(styles);
  * @return {React.ReactElement} The Footer component.
  */
 export default function Footer({ menuItems }) {
+
+  const [isNavShown, setIsNavShown] = useState(false);
+  const navClasses = cx(
+    'primary-navigation',
+    isNavShown ? cx('show') : undefined
+  );
+
+
   return (
     <footer className={cx('footer')}>
       <div className="container">
@@ -31,7 +41,7 @@ export default function Footer({ menuItems }) {
                     className={cx('social-icon-link')}
                     href={appConfig.socialLinks.twitterUrl}
                   >
-                    <FaTwitter title="Twitter" className={cx('social-icon')} />
+                    <FaXTwitter title="Twitter" className={cx('social-icon')} />
                   </a>
                 </li>
               )}
@@ -73,14 +83,19 @@ export default function Footer({ menuItems }) {
           </div>
         )}
 
-        <NavigationMenu className={cx('nav')} menuItems={menuItems} />
-
-        {/* <div className={cx('copyright')}>
-          &copy; {new Date().getFullYear()} Blueprint Media &#183; Powered By{' '}
-          <a href="https://wpengine.com/headless-wordpress">
-            Headless Platform
-          </a>
-        </div> */}
+        <NavigationMenu
+              id={cx('primary-navigation')}
+              className={navClasses}
+              menuItems={menuItems}
+            >
+              <li>
+                <Link legacyBehavior href="/search">
+                  <a>
+                    <FaSearch title="Search" role="img" />
+                  </a>
+                </Link>
+              </li>
+            </NavigationMenu>
       </div>
     </footer>
   );

@@ -15,8 +15,11 @@
 }
 
 .navbar {
-  background-color: pink;
+  background-color: rgb(3, 86, 66);
+  padding: 1rem 0;
 }
+
+
 
 .bar {
   // display: flex;
@@ -87,8 +90,9 @@
       align-items: center;
       height: 100%;
       padding: 1rem;
-      font-weight: $font-weight-bold;
-      color: var(--color-white);
+      font-weight: 300;
+      // color: var(--color-white);
+      color: rgb(186, 213, 201);
 
       &:hover,
       &:focus {
