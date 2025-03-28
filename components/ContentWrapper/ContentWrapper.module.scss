@@ -47,7 +47,11 @@
     }
 
     li {
-      font-size: 1.6rem;
+      letter-spacing: 0.35px;
+      line-height: 3.35rem;
+      font-size: 1.8rem;
+      font-family: Merriweather, serif;
+      color: var(--color-black);
     }
 
     img {

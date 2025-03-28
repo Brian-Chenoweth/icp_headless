@@ -22,14 +22,17 @@ export default function Footer({ menuItems }) {
 
   const [isNavShown] = useState(false);
   const navClasses = cx(
+    'primaryNavigationFooter',
     'primary-navigation',
-    isNavShown ? cx('show') : undefined
+    isNavShown && 'show'
   );
 
 
   return (
     <footer className={cx('footer')}>
-      <div className="container">
+      <div className={cx('navbar')}>
+      <div className={cx('container')}>
+      <div className={cx('navbarContainer')}>
         {appConfig?.socialLinks && (
           <div className={cx('social-links')}>
             <ul aria-label="Social media">
@@ -83,11 +86,12 @@ export default function Footer({ menuItems }) {
           </div>
         )}
 
+        <div className={cx('nav-footer')}>
         <NavigationMenu
-              id={cx('primary-navigation')}
-              className={navClasses}
-              menuItems={menuItems}
-            >
+          id={cx('primary-navigation')}
+          className={navClasses}
+          menuItems={menuItems}
+        >
               <li>
                 <Link legacyBehavior href="/search">
                   <a>
@@ -96,6 +100,11 @@ export default function Footer({ menuItems }) {
                 </Link>
               </li>
             </NavigationMenu>
+            </div>
+
+
+      </div>
+      </div>
       </div>
     </footer>
   );

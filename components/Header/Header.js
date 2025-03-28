@@ -5,9 +5,15 @@ import Link from 'next/link';
 import { NavigationMenu, SkipNavigationLink } from '../';
 import {
   FaBars,
-  FaSearch, 
+  FaSearch,
 } from 'react-icons/fa';
-import styles from './Header.module.scss';
+import {
+  FaFacebookF,
+  FaInstagram,
+  FaXTwitter,
+} from 'react-icons/fa6';
+import styles from './Header.module.scss'
+import appConfig from '../../app.config.js';;
 let cx = classNames.bind(styles);
 /**
  * A Header component
@@ -56,7 +62,8 @@ export default function Header({ className, menuItems }) {
         </div>
       </div>
       <div className={cx('navbar')}>
-        <div className="container navbarContainer">
+      <div className={cx('container')}>
+      <div className={cx('navbarContainer')}>
           <NavigationMenu
               id={cx('primary-navigation')}
               className={navClasses}
@@ -70,8 +77,7 @@ export default function Header({ className, menuItems }) {
                 </Link>
               </li>
             </NavigationMenu>
-            </div>
-            {/* {appConfig?.socialLinks && (
+            {appConfig?.socialLinks && (
           <div className={cx('social-links')}>
             <ul aria-label="Social media">
               {appConfig.socialLinks?.twitterUrl && (
@@ -82,7 +88,7 @@ export default function Header({ className, menuItems }) {
                     className={cx('social-icon-link')}
                     href={appConfig.socialLinks.twitterUrl}
                   >
-                    <FaTwitter title="Twitter" className={cx('social-icon')} />
+                    <FaXTwitter title="Twitter" className={cx('social-icon')} />
                   </a>
                 </li>
               )}
@@ -122,8 +128,11 @@ export default function Header({ className, menuItems }) {
 
             </ul>
           </div>
-              )} */}
+              )}
         </div>
+      </div>
+
+      </div>
     </header>
   );
 }
