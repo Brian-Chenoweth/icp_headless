@@ -19,6 +19,14 @@ export default function SEO({ title, description, imageUrl, url }) {
   return (
     <>
       <Head>
+      <link
+          href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet"
+        />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&display=swap"
+          rel="stylesheet"
+        />
         <meta property="og:type" content="website" />
         <meta property="twitter:card" content="summary_large_image" />
 
