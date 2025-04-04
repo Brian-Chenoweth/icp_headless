@@ -19,9 +19,11 @@ export default function EntryHeader({ title, image, date, author, className }) {
   return (
     <div className={cx(['entry-header', className])}>
       {hasText && (
-        <div className={cx('text')}>
-          {!!title && <Heading className={cx('title')}>{title}</Heading>}
-          <PostInfo className={cx('byline')} author={author} date={date} />
+        <div className='container'>
+          <div className={cx('text')}>
+            {!!title && <Heading className={cx('title')}>{title}</Heading>}
+            <PostInfo className={cx('byline')} author={author} date={date} />
+          </div>
         </div>
       )}
 

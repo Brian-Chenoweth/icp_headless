@@ -24,7 +24,7 @@ export default function SEO({ title, description, imageUrl, url }) {
           rel="stylesheet"
         />
         <link
-          href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;500;600;700&display=swap"
           rel="stylesheet"
         />
         <meta property="og:type" content="website" />

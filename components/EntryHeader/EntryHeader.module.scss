@@ -3,7 +3,7 @@
 .entry-header {
   margin-bottom: 2rem;
   color: var(--color-white);
-  background-color: var(--color-primary);
+  background-color: var(--color-white);
 
   @media (min-width: $breakpoint-small) {
     margin-bottom: 5rem;
@@ -18,18 +18,30 @@
 
 .text {
   width: 100%;
-  max-width: 82rem;
-  padding: 4rem 0;
+  // max-width: 82rem;
+  padding: 2rem 0;
 }
 
 .title {
   line-height: 1.25;
+  color: rgba(0, 0, 0, 0.8);
+  text-align: left;
+  font-size: 3.5rem;
+  @media (min-width: $breakpoint-small) {
+    font-size: 4.8rem;
+    text-align: left;
+  }
 }
 
 .byline {
   font-weight: $font-weight-bold;
   font-size: 1.2rem;
-  text-transform: uppercase;
+  // text-transform: uppercase;
+  text-align: left;
+  color: rgb(73, 126, 107);
+  time {
+    color: rgba(0, 0, 0, 0.54);
+  }
 }
 
 .image {

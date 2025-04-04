@@ -16,6 +16,12 @@
   align-items: center;
   justify-content: space-between;
   // border: 1px solid red;
+  flex-direction: column;
+
+  @media (min-width: $breakpoint-small) {
+    flex-direction: row;
+  }
+
 }
 
 
@@ -56,7 +62,7 @@
 }
 
 .logo {
-  width: 275px;
+  max-width: 275px;
   height: auto;
 }
 
@@ -101,10 +107,11 @@
     list-style: none;
     text-transform: uppercase;
     font-size: 1.4rem;
-    margin: 0;
+    margin: 0 0 2rem 0;
 
     @media (min-width: $breakpoint-small) {
       flex-direction: row;
+      margin: 0;
     }
 
     li {
