@@ -11,8 +11,11 @@ module.exports = withFaust({
     includePaths: ['node_modules'],
   },
   images: {
-    domains: [getWpHostname()],
-  },
+    domains: [
+      getWpHostname(),
+      'insidecp.calpolypartners.org',
+    ],
+  },  
   i18n: {
     locales: ['en'],
     defaultLocale: 'en',
