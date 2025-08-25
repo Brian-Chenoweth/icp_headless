@@ -58,12 +58,13 @@ export default function Component(props) {
         <div>
           <div className="cp-grid">
 
-        <EntryHeader
-          title={title}
-          image={featuredImage?.node}
-          date={date}
-          author={author?.node?.name}
-        />
+      <EntryHeader
+        title={title}
+        image={featuredImage?.node}
+        date={date}
+        author={author?.node?.name}
+        isSingle={true}   // 👈 ensures container is NOT added
+      />
         {/* Sidebar: Recent Posts */}
         <aside className="cp-sidebar" aria-label="Recent posts">
           <h3>Recent Posts</h3>
