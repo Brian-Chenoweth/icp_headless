@@ -1,5 +1,5 @@
-
 import { gql } from '@apollo/client';
+import Link from 'next/link';
 import {
   Header,
   Footer,
@@ -26,7 +26,15 @@ export default function Component(props) {
     props?.data?.generalSettings;
   const primaryMenu = props?.data?.headerMenuItems?.nodes ?? [];
   const footerMenu = props?.data?.footerMenuItems?.nodes ?? [];
-  const { title, content, featuredImage, date, author } = props.data.post;
+
+  const { title, content, featuredImage, date, author, databaseId } =
+    props.data.post;
+
+  // Recent posts (exclude the current post; cap to 5)
+  const recent =
+    props?.data?.recentPosts?.nodes
+      ?.filter((p) => p.databaseId !== databaseId)
+      ?.slice(0, 8) ?? [];
 
   return (
     <>
@@ -44,22 +52,48 @@ export default function Component(props) {
         description={siteDescription}
         menuItems={primaryMenu}
       />
+<div className="container">
       <Main>
-        <>
-          <EntryHeader
-            title={title}
-            image={featuredImage?.node}
-            date={date}
-            author={author?.node?.name}
-          />
-          <div className="container">
-            <ContentWrapper content={content}>
-              <TaxonomyTerms post={props.data.post} taxonomy={'categories'} />
-              <TaxonomyTerms post={props.data.post} taxonomy={'tags'} />
-            </ContentWrapper>
+        {/* 2-column layout: article + sidebar */}
+        <div>
+          <div className="cp-grid">
+
+        <EntryHeader
+          title={title}
+          image={featuredImage?.node}
+          date={date}
+          author={author?.node?.name}
+        />
+        {/* Sidebar: Recent Posts */}
+        <aside className="cp-sidebar" aria-label="Recent posts">
+          <h3>Recent Posts</h3>
+          <ul>
+            {recent.map((p) => (
+              <li key={p.databaseId}>
+                <Link href={p.uri}>{p.title}</Link>
+                {p.date ? (
+                  <time dateTime={p.date}>
+                    {new Date(p.date).toLocaleDateString()}
+                  </time>
+                ) : null}
+              </li>
+            ))}
+          </ul>
+        </aside>
+
           </div>
-        </>
+
+            <article>
+              <ContentWrapper content={content}>
+                <TaxonomyTerms post={props.data.post} taxonomy={'categories'} />
+                <TaxonomyTerms post={props.data.post} taxonomy={'tags'} />
+              </ContentWrapper>
+            </article>
+
+        </div>
       </Main>
+      </div>
+
       <Footer title={siteTitle} menuItems={footerMenu} />
     </>
   );
@@ -76,6 +110,7 @@ Component.query = gql`
     $asPreview: Boolean = false
   ) {
     post(id: $databaseId, idType: DATABASE_ID, asPreview: $asPreview) {
+      databaseId
       title
       content
       date
@@ -101,6 +136,15 @@ Component.query = gql`
         }
       }
       ...FeaturedImageFragment
+    }
+    # Recent posts for sidebar
+    recentPosts: posts(first: 9, where: { orderby: { field: DATE, order: DESC } }) {
+      nodes {
+        databaseId
+        title
+        uri
+        date
+      }
     }
     generalSettings {
       ...BlogInfoFragment
