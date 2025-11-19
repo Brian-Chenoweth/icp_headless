@@ -58,11 +58,11 @@ export default function Page() {
       <Main>
         <div className={styles['search-header-pane']}>
           <div className="container small">
-            <h2 className={styles['search-header-text']}>
+            <h1 className={styles['search-header-text']}>
               {searchQuery && !searchResultsLoading
                 ? `Showing results for "${searchQuery}"`
                 : `Search`}
-            </h2>
+            </h1>
             <SearchInput
               value={searchQuery}
               onChange={(newValue) => setSearchQuery(newValue)}

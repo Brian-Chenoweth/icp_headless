@@ -52,6 +52,7 @@ export default function Component() {
 
       <Main className={styles.home}>
         <div className="container">
+          <h1 className={styles.hidden}>Inside Cal Poly</h1>
           <section className={styles.posts}>
             <Posts posts={data.posts?.nodes} id="posts-list" />
             <LoadMore
