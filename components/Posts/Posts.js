@@ -68,6 +68,8 @@ function Posts({ posts, intro, id }) {
                       image={image}
                       width={340}
                       height={340}
+                      sizes="(max-width: 1024px) calc(100vw - 4rem), calc((83.333vw - 7rem) / 2)"
+                      quality={60}
                       priority={i < appConfig.postsAboveTheFold}
                     />
                   </a>
