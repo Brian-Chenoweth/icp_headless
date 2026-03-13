@@ -7,6 +7,7 @@
     "build": "faust build",
     "generate": "faust generatePossibleTypes",
     "start": "faust start",
+    "alt-text:backfill": "node scripts/backfill-image-alt-text.js",
     "lint": "faust lint",
     "clean": "rimraf .next node_modules",
     "wpe-build": "faust build",
