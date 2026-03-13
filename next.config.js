@@ -11,11 +11,25 @@ module.exports = withFaust({
     includePaths: ['node_modules'],
   },
   images: {
+    minimumCacheTTL: 31536000,
     domains: [
       getWpHostname(),
       'insidecp.calpolypartners.org',
     ],
-  },  
+  },
+  async headers() {
+    return [
+      {
+        source: '/static/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+    ];
+  },
   i18n: {
     locales: ['en'],
     defaultLocale: 'en',
