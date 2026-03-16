@@ -1,4 +1,3 @@
-
 import { gql } from '@apollo/client';
 import {
   Header,
@@ -14,21 +13,41 @@ import {
 
 import * as MENUS from '../constants/menus';
 import { BlogInfoFragment } from '../fragments/GeneralSettings';
+import {
+  buildKeywordString,
+  buildMetaDescription,
+  pageTitle,
+} from '../utilities';
 
 export default function Component(props) {
   // Loading state for previews
   if (props.loading) {
     return <>Loading...</>;
   }
-  const { title: siteTitle } = props?.data?.generalSettings;
+  const { title: siteTitle, description: siteDescription } =
+    props?.data?.generalSettings;
   const primaryMenu = props?.data?.headerMenuItems?.nodes ?? [];
   const footerMenu = props?.data?.footerMenuItems?.nodes ?? [];
   const { featuredImage } = props.data.project;
   const { title, summary, contentArea } = props.data.project.projectFields;
+  const seoContent = `${summary ?? ''} ${contentArea ?? ''}`;
+  const description = buildMetaDescription({
+    title,
+    content: seoContent,
+    fallback: siteDescription,
+  });
+  const keywords = buildKeywordString({
+    title,
+    content: seoContent,
+    seedKeywords: ['project', 'portfolio'],
+  });
+
   return (
     <>
       <SEO
-        title={`${title} - ${props?.data?.generalSettings?.title}`}
+        title={pageTitle(props?.data?.generalSettings, title, siteTitle)}
+        description={description}
+        keywords={keywords}
         imageUrl={featuredImage?.node?.sourceUrl}
       />
 

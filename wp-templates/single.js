@@ -13,7 +13,11 @@ import {
 } from '../components';
 
 import * as MENUS from '../constants/menus';
-import { pageTitle } from '../utilities';
+import {
+  buildKeywordString,
+  buildMetaDescription,
+  pageTitle,
+} from '../utilities';
 import { BlogInfoFragment } from '../fragments/GeneralSettings';
 
 export default function Component(props) {
@@ -29,6 +33,16 @@ export default function Component(props) {
 
   const { title, content, featuredImage, date, author, databaseId } =
     props.data.post;
+  const description = buildMetaDescription({
+    title,
+    content,
+    fallback: siteDescription,
+  });
+  const keywords = buildKeywordString({
+    title,
+    content,
+    seedKeywords: ['post', 'blog'],
+  });
 
   // Recent posts (exclude the current post; cap to 5)
   const recent =
@@ -44,7 +58,8 @@ export default function Component(props) {
           title,
           props?.data?.generalSettings?.title
         )}
-        description={siteDescription}
+        description={description}
+        keywords={keywords}
         imageUrl={featuredImage?.node?.sourceUrl}
       />
       <Header
@@ -52,37 +67,35 @@ export default function Component(props) {
         description={siteDescription}
         menuItems={primaryMenu}
       />
-<div className="container">
-      <Main>
-        {/* 2-column layout: article + sidebar */}
-        <div>
-          <div className="cp-grid">
-
-      <EntryHeader
-        title={title}
-        image={featuredImage?.node}
-        date={date}
-        author={author?.node?.name}
-        isSingle={true}   // 👈 ensures container is NOT added
-      />
-        {/* Sidebar: Recent Posts */}
-        <aside className="cp-sidebar" aria-label="Recent posts">
-          <h3>Recent Posts</h3>
-          <ul>
-            {recent.map((p) => (
-              <li key={p.databaseId}>
-                <Link href={p.uri}>{p.title}</Link>
-                {p.date ? (
-                  <time dateTime={p.date}>
-                    {new Date(p.date).toLocaleDateString()}
-                  </time>
-                ) : null}
-              </li>
-            ))}
-          </ul>
-        </aside>
-
-          </div>
+      <div className="container">
+        <Main>
+          {/* 2-column layout: article + sidebar */}
+          <div>
+            <div className="cp-grid">
+              <EntryHeader
+                title={title}
+                image={featuredImage?.node}
+                date={date}
+                author={author?.node?.name}
+                isSingle={true} // 👈 ensures container is NOT added
+              />
+              {/* Sidebar: Recent Posts */}
+              <aside className="cp-sidebar" aria-label="Recent posts">
+                <h3>Recent Posts</h3>
+                <ul>
+                  {recent.map((p) => (
+                    <li key={p.databaseId}>
+                      <Link href={p.uri}>{p.title}</Link>
+                      {p.date ? (
+                        <time dateTime={p.date}>
+                          {new Date(p.date).toLocaleDateString()}
+                        </time>
+                      ) : null}
+                    </li>
+                  ))}
+                </ul>
+              </aside>
+            </div>
 
             <article>
               <ContentWrapper content={content}>
@@ -90,9 +103,8 @@ export default function Component(props) {
                 <TaxonomyTerms post={props.data.post} taxonomy={'tags'} />
               </ContentWrapper>
             </article>
-
-        </div>
-      </Main>
+          </div>
+        </Main>
       </div>
 
       <Footer title={siteTitle} menuItems={footerMenu} />
@@ -139,7 +151,10 @@ Component.query = gql`
       ...FeaturedImageFragment
     }
     # Recent posts for sidebar
-    recentPosts: posts(first: 9, where: { orderby: { field: DATE, order: DESC } }) {
+    recentPosts: posts(
+      first: 9
+      where: { orderby: { field: DATE, order: DESC } }
+    ) {
       nodes {
         databaseId
         title

@@ -1,24 +1,17 @@
-
 import { useQuery, gql } from '@apollo/client';
-import { FaArrowRight } from 'react-icons/fa';
 import {
-  EntryHeader,
+  Footer,
+  Header,
   Main,
-  Button,
-  Heading,
-  CTA,
+  Posts,
+  LoadMore,
   NavigationMenu,
   SEO,
-  Header,
-  Footer,
-  Posts,
-  Testimonials,
-  LoadMore,
 } from '../components';
-
 import styles from '../styles/pages/_Home.module.scss';
 import * as MENUS from '../constants/menus';
 import { BlogInfoFragment } from '../fragments/GeneralSettings';
+import { buildKeywordString, buildMetaDescription } from '../utilities';
 
 const postsPerPage = 8;
 
@@ -34,15 +27,24 @@ export default function Component() {
     data?.generalSettings;
   const primaryMenu = data?.headerMenuItems?.nodes ?? [];
   const footerMenu = data?.footerMenuItems?.nodes ?? [];
+  const homePosts = data?.posts?.nodes ?? [];
+  const homeContent = homePosts
+    .map((post) => `${post?.title ?? ''} ${post?.excerpt ?? ''}`)
+    .join(' ');
+  const description = buildMetaDescription({
+    title: siteTitle,
+    content: `${siteDescription ?? ''} ${homeContent}`,
+    fallback: siteDescription,
+  });
+  const keywords = buildKeywordString({
+    title: siteTitle,
+    content: `${siteDescription ?? ''} ${homeContent}`,
+    seedKeywords: ['home', 'inside cal poly'],
+  });
 
-  const mainBanner = {
-    sourceUrl: '/static/banner.jpeg',
-    mediaDetails: { width: 1200, height: 600 },
-    altText: 'Portfolio Banner',
-  };
   return (
     <>
-      <SEO title={siteTitle} description={siteDescription} />
+      <SEO title={siteTitle} description={description} keywords={keywords} />
 
       <Header
         title={siteTitle}
@@ -54,7 +56,7 @@ export default function Component() {
         <div className="container">
           <h1 className={styles.hidden}>Inside Cal Poly</h1>
           <section className={styles.posts}>
-            <Posts posts={data.posts?.nodes} id="posts-list" />
+            <Posts posts={homePosts} id="posts-list" />
             <LoadMore
               className="text-center"
               hasNextPage={data.nodeByUri?.contentNodes?.pageInfo.hasNextPage}
@@ -82,7 +84,6 @@ Component.query = gql`
   ${BlogInfoFragment}
   ${NavigationMenu.fragments.entry}
   ${Posts.fragments.entry}
-  ${Testimonials.fragments.entry}
   query GetPageData(
     $headerLocation: MenuLocationEnum
     $footerLocation: MenuLocationEnum
@@ -91,11 +92,6 @@ Component.query = gql`
     posts(first: $first) {
       nodes {
         ...PostsItemFragment
-      }
-    }
-    testimonials {
-      nodes {
-        ...TestimonialsFragment
       }
     }
     generalSettings {

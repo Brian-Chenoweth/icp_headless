@@ -14,9 +14,10 @@ import {
 } from '@components';
 import { BlogInfoFragment } from '@fragments/GeneralSettings';
 import { useState } from 'react';
+import { buildKeywordString, buildMetaDescription } from '@utilities';
 import { GetSearchResults } from '../queries/GetSearchResults';
 import styles from '../styles/pages/_Search.module.scss';
-import appConfig from "@config";
+import appConfig from '@config';
 
 export default function Page() {
   const [searchQuery, setSearchQuery] = useState('');
@@ -44,10 +45,35 @@ export default function Page() {
     skip: searchQuery === '',
     fetchPolicy: 'network-only',
   });
+  const searchResults = searchResultsData?.contentNodes?.edges?.map(
+    ({ node }) => node
+  );
+  const searchContent = searchResults
+    ?.map((node) => `${node?.title ?? ''} ${node?.excerpt ?? ''}`)
+    .join(' ');
+  const searchTitle = searchQuery
+    ? `${searchQuery} Search | ${siteTitle}`
+    : siteTitle;
+  const searchDescription = buildMetaDescription({
+    title: searchTitle,
+    content: searchQuery ? `${searchQuery} ${searchContent ?? ''}` : '',
+    fallback: searchQuery
+      ? `Search results for "${searchQuery}" on ${siteTitle}.`
+      : siteDescription,
+  });
+  const searchKeywords = buildKeywordString({
+    title: searchQuery ? `Search ${searchQuery}` : 'Search',
+    content: `${searchQuery} ${searchContent ?? ''}`,
+    seedKeywords: ['site search', siteTitle],
+  });
 
   return (
     <>
-      <SEO title={siteTitle} description={siteDescription} />
+      <SEO
+        title={searchTitle}
+        description={searchDescription}
+        keywords={searchKeywords}
+      />
 
       <Header
         title={siteTitle}
@@ -78,9 +104,7 @@ export default function Page() {
           )}
 
           <SearchResults
-            searchResults={searchResultsData?.contentNodes?.edges?.map(
-              ({ node }) => node
-            )}
+            searchResults={searchResults}
             isLoading={searchResultsLoading}
           />
 

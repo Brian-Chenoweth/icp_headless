@@ -5,18 +5,22 @@ import React from 'react';
 import {
   FeaturedImage,
   Footer,
-  Header,
   EntryHeader,
+  Header,
   LoadMore,
   Main,
+  NavigationMenu,
   Posts,
   SEO,
-  NavigationMenu,
 } from '@components';
 import { getNextStaticProps } from '@faustwp/core';
-import { pageTitle } from '@utilities';
+import {
+  buildKeywordString,
+  buildMetaDescription,
+  pageTitle,
+} from '@utilities';
 import { BlogInfoFragment } from '@fragments/GeneralSettings';
-import appConfig from "@config";
+import appConfig from '@config';
 
 export default function Page() {
   const { data, loading, fetchMore } = useQuery(Page.query, {
@@ -27,19 +31,38 @@ export default function Page() {
     return <></>;
   }
 
-  const { title: siteTitle } = data?.generalSettings;
+  const { title: siteTitle, description: siteDescription } =
+    data?.generalSettings;
   const primaryMenu = data?.headerMenuItems?.nodes ?? [];
   const footerMenu = data?.footerMenuItems?.nodes ?? [];
   const postList = data.posts.edges.map((el) => el.node);
+  const listingTitle = 'Latest Posts';
+  const listingContent = postList
+    .map((post) => `${post?.title ?? ''} ${post?.excerpt ?? ''}`)
+    .join(' ');
+  const description = buildMetaDescription({
+    title: listingTitle,
+    content: listingContent,
+    fallback: siteDescription,
+  });
+  const keywords = buildKeywordString({
+    title: listingTitle,
+    content: listingContent,
+    seedKeywords: ['latest posts', 'blog'],
+  });
 
   return (
     <>
-      <SEO title={pageTitle(data?.generalSettings)} />
+      <SEO
+        title={pageTitle(data?.generalSettings, listingTitle)}
+        description={description}
+        keywords={keywords}
+      />
 
       <Header menuItems={primaryMenu} />
 
       <Main>
-        <EntryHeader title="Latest Posts" />
+        <EntryHeader title={listingTitle} />
         <div className="container">
           <Posts posts={postList} id="post-list" />
           <LoadMore

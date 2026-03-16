@@ -5,18 +5,22 @@ import React from 'react';
 import {
   FeaturedImage,
   Footer,
-  Header,
   EntryHeader,
+  Header,
   LoadMore,
   Main,
+  NavigationMenu,
   Projects,
   SEO,
-  NavigationMenu,
 } from '@components';
 import { getNextStaticProps } from '@faustwp/core';
-import { pageTitle } from '@utilities';
+import {
+  buildKeywordString,
+  buildMetaDescription,
+  pageTitle,
+} from '@utilities';
 import { BlogInfoFragment } from '@fragments/GeneralSettings';
-import appConfig from "@config";
+import appConfig from '@config';
 
 export default function Page() {
   const { data, loading, fetchMore } = useQuery(Page.query, {
@@ -27,18 +31,43 @@ export default function Page() {
     return <></>;
   }
 
-  const { title: siteTitle } = data?.generalSettings;
+  const { title: siteTitle, description: siteDescription } =
+    data?.generalSettings;
   const primaryMenu = data?.headerMenuItems?.nodes ?? [];
   const footerMenu = data?.footerMenuItems?.nodes ?? [];
   const projectList = data?.projects?.nodes ?? [];
+  const listingTitle = 'Projects';
+  const listingContent = projectList
+    .map(
+      (project) =>
+        `${project?.projectFields?.title ?? ''} ${
+          project?.projectFields?.summary ?? ''
+        }`
+    )
+    .join(' ');
+  const description = buildMetaDescription({
+    title: listingTitle,
+    content: listingContent,
+    fallback: siteDescription,
+  });
+  const keywords = buildKeywordString({
+    title: listingTitle,
+    content: listingContent,
+    seedKeywords: ['projects', 'portfolio'],
+  });
+
   return (
     <>
-      <SEO title={pageTitle(data?.generalSettings, 'Projects')} />
+      <SEO
+        title={pageTitle(data?.generalSettings, listingTitle)}
+        description={description}
+        keywords={keywords}
+      />
 
       <Header menuItems={primaryMenu} />
 
       <Main>
-        <EntryHeader title="Projects" />
+        <EntryHeader title={listingTitle} />
         <div className="container">
           <Projects projects={projectList} id="project-list" />
           <LoadMore

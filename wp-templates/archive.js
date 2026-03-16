@@ -1,6 +1,10 @@
 import { gql, useQuery } from '@apollo/client';
 
-import { pageTitle } from '../utilities';
+import {
+  buildKeywordString,
+  buildMetaDescription,
+  pageTitle,
+} from '../utilities';
 import * as MENUS from '../constants/menus';
 import { BlogInfoFragment } from '../fragments/GeneralSettings';
 import {
@@ -31,16 +35,27 @@ export default function Archive(props) {
   const primaryMenu = data?.headerMenuItems?.nodes ?? [];
   const footerMenu = data?.footerMenuItems?.nodes ?? [];
   const postList = data.nodeByUri?.contentNodes?.edges.map((el) => el.node);
+  const archiveTitle = `${__typename}: ${name}`;
+  const archiveContent = postList
+    ?.map((node) => `${node?.title ?? ''} ${node?.content ?? ''}`)
+    .join(' ');
+  const description = buildMetaDescription({
+    title: archiveTitle,
+    content: `${data?.nodeByUri?.description ?? ''} ${archiveContent ?? ''}`,
+    fallback: siteDescription,
+  });
+  const keywords = buildKeywordString({
+    title: archiveTitle,
+    content: `${data?.nodeByUri?.description ?? ''} ${archiveContent ?? ''}`,
+    seedKeywords: [name, 'archive'],
+  });
 
   return (
     <>
       <SEO
-        title={pageTitle(
-          props?.data?.generalSettings,
-          `${__typename}: ${name}`,
-          siteTitle
-        )}
-        description={siteDescription}
+        title={pageTitle(props?.data?.generalSettings, archiveTitle, siteTitle)}
+        description={description}
+        keywords={keywords}
       />
       <Header
         title={siteTitle}
@@ -49,7 +64,7 @@ export default function Archive(props) {
       />
       <Main>
         <>
-          <EntryHeader title={`${__typename}: ${name}`} />
+          <EntryHeader title={archiveTitle} />
           <div className="container">
             <Posts posts={postList} />
             <LoadMore

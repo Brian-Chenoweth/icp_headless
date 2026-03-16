@@ -6,20 +6,21 @@ import Head from 'next/head';
  * @param {Props} props The props object.
  * @param {string} props.title Used for the page title, og:title, twitter:title, etc.
  * @param {string} props.description Used for the meta description, og:description, twitter:description, etc.
+ * @param {string} props.keywords Used for the keywords meta tag.
  * @param {string} props.imageUrl Used for the og:image and twitter:image.
  * @param {string} props.url Used for the og:url and twitter:url.
  *
  * @returns {React.ReactElement} The SEO component
  */
-export default function SEO({ title, description, imageUrl, url }) {
-  if (!title && !description && !imageUrl && !url) {
+export default function SEO({ title, description, keywords, imageUrl, url }) {
+  if (!title && !description && !keywords && !imageUrl && !url) {
     return null;
   }
 
   return (
     <>
       <Head>
-      <link
+        <link
           href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;500;600;700&display=swap"
           rel="stylesheet"
         />
@@ -46,6 +47,8 @@ export default function SEO({ title, description, imageUrl, url }) {
             <meta property="twitter:description" content={description} />
           </>
         )}
+
+        {keywords && <meta name="keywords" content={keywords} />}
 
         {imageUrl && (
           <>

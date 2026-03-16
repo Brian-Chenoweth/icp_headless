@@ -2,7 +2,11 @@ import * as MENUS from '../constants/menus';
 import { gql } from '@apollo/client';
 
 import { BlogInfoFragment } from '../fragments/GeneralSettings';
-import { pageTitle } from '../utilities';
+import {
+  buildKeywordString,
+  buildMetaDescription,
+  pageTitle,
+} from '../utilities';
 import {
   Header,
   Footer,
@@ -25,6 +29,16 @@ export default function Component(props) {
   const primaryMenu = props?.data?.headerMenuItems?.nodes ?? [];
   const footerMenu = props?.data?.footerMenuItems?.nodes ?? [];
   const { title, content, featuredImage } = props?.data?.page ?? { title: '' };
+  const description = buildMetaDescription({
+    title,
+    content,
+    fallback: siteDescription,
+  });
+  const keywords = buildKeywordString({
+    title,
+    content,
+    seedKeywords: ['page', siteTitle],
+  });
 
   return (
     <>
@@ -34,7 +48,8 @@ export default function Component(props) {
           title,
           props?.data?.generalSettings?.title
         )}
-        description={siteDescription}
+        description={description}
+        keywords={keywords}
         imageUrl={featuredImage?.node?.sourceUrl}
       />
       <Header
