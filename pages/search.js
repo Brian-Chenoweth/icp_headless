@@ -73,6 +73,9 @@ export default function Page() {
         title={searchTitle}
         description={searchDescription}
         keywords={searchKeywords}
+        siteName={siteTitle}
+        url="/search"
+        noIndex={true}
       />
 
       <Header

@@ -56,6 +56,8 @@ export default function Archive(props) {
         title={pageTitle(props?.data?.generalSettings, archiveTitle, siteTitle)}
         description={description}
         keywords={keywords}
+        siteName={siteTitle}
+        url={uri}
       />
       <Header
         title={siteTitle}

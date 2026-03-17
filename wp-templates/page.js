@@ -28,7 +28,8 @@ export default function Component(props) {
     props?.data?.generalSettings;
   const primaryMenu = props?.data?.headerMenuItems?.nodes ?? [];
   const footerMenu = props?.data?.footerMenuItems?.nodes ?? [];
-  const { title, content, featuredImage } = props?.data?.page ?? { title: '' };
+  const { title, content, featuredImage, uri, modified } =
+    props?.data?.page ?? { title: '' };
   const description = buildMetaDescription({
     title,
     content,
@@ -51,6 +52,10 @@ export default function Component(props) {
         description={description}
         keywords={keywords}
         imageUrl={featuredImage?.node?.sourceUrl}
+        imageAlt={featuredImage?.node?.altText}
+        siteName={siteTitle}
+        url={uri}
+        modifiedTime={modified}
       />
       <Header
         title={siteTitle}
@@ -91,7 +96,9 @@ Component.query = gql`
   ) {
     page(id: $databaseId, idType: DATABASE_ID, asPreview: $asPreview) {
       title
+      uri
       content
+      modified
       ...FeaturedImageFragment
     }
     generalSettings {

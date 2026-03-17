@@ -28,7 +28,7 @@ export default function Component(props) {
     props?.data?.generalSettings;
   const primaryMenu = props?.data?.headerMenuItems?.nodes ?? [];
   const footerMenu = props?.data?.footerMenuItems?.nodes ?? [];
-  const { featuredImage } = props.data.project;
+  const { featuredImage, uri, modified } = props.data.project;
   const { title, summary, contentArea } = props.data.project.projectFields;
   const seoContent = `${summary ?? ''} ${contentArea ?? ''}`;
   const description = buildMetaDescription({
@@ -49,6 +49,10 @@ export default function Component(props) {
         description={description}
         keywords={keywords}
         imageUrl={featuredImage?.node?.sourceUrl}
+        imageAlt={featuredImage?.node?.altText}
+        siteName={siteTitle}
+        url={uri}
+        modifiedTime={modified}
       />
 
       <Header menuItems={primaryMenu} />
@@ -81,6 +85,8 @@ Component.query = gql`
     $asPreview: Boolean = false
   ) {
     project(id: $databaseId, idType: DATABASE_ID, asPreview: $asPreview) {
+      uri
+      modified
       projectFields {
         title: projectTitle
         summary

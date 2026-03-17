@@ -31,8 +31,16 @@ export default function Component(props) {
   const primaryMenu = props?.data?.headerMenuItems?.nodes ?? [];
   const footerMenu = props?.data?.footerMenuItems?.nodes ?? [];
 
-  const { title, content, featuredImage, date, author, databaseId } =
-    props.data.post;
+  const {
+    title,
+    content,
+    featuredImage,
+    date,
+    modified,
+    author,
+    databaseId,
+    uri,
+  } = props.data.post;
   const description = buildMetaDescription({
     title,
     content,
@@ -61,6 +69,17 @@ export default function Component(props) {
         description={description}
         keywords={keywords}
         imageUrl={featuredImage?.node?.sourceUrl}
+        imageAlt={featuredImage?.node?.altText}
+        siteName={siteTitle}
+        type="article"
+        url={uri}
+        publishedTime={date}
+        modifiedTime={modified}
+        author={author?.node?.name}
+        tags={[
+          ...(props?.data?.post?.categories?.edges?.map(({ node }) => node?.name) ?? []),
+          ...(props?.data?.post?.tags?.edges?.map(({ node }) => node?.name) ?? []),
+        ].filter(Boolean)}
       />
       <Header
         title={siteTitle}
@@ -125,8 +144,10 @@ Component.query = gql`
     post(id: $databaseId, idType: DATABASE_ID, asPreview: $asPreview) {
       databaseId
       title
+      uri
       content
       date
+      modified
       author {
         node {
           name

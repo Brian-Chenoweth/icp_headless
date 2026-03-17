@@ -57,6 +57,8 @@ export default function Page() {
         title={pageTitle(data?.generalSettings, listingTitle)}
         description={description}
         keywords={keywords}
+        siteName={siteTitle}
+        url="/posts"
       />
 
       <Header menuItems={primaryMenu} />

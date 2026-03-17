@@ -44,7 +44,13 @@ export default function Component() {
 
   return (
     <>
-      <SEO title={siteTitle} description={description} keywords={keywords} />
+      <SEO
+        title={siteTitle}
+        description={description}
+        keywords={keywords}
+        siteName={siteTitle}
+        url="/"
+      />
 
       <Header
         title={siteTitle}
