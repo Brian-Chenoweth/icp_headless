@@ -109,6 +109,7 @@ export default function Page() {
           <SearchResults
             searchResults={searchResults}
             isLoading={searchResultsLoading}
+            searchQuery={searchQuery}
           />
 
           {searchResultsData?.contentNodes?.pageInfo?.hasNextPage && (

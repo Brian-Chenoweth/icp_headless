@@ -18,6 +18,13 @@ $color-grey: #777;
   margin-bottom: 2rem;
 }
 
+.highlight {
+  background: rgba(255, 214, 10, 0.5);
+  color: inherit;
+  border-radius: 0.2rem;
+  padding: 0 0.15em;
+}
+
 .no-results {
   text-align: center;
   margin-top: 8rem;
