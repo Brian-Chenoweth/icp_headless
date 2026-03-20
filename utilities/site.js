@@ -12,6 +12,48 @@ function normalizeSiteUrl(value = '') {
   return withProtocol.replace(/\/+$/, '');
 }
 
+function normalizePublicUrl(value = '') {
+  const trimmed = `${value ?? ''}`.trim();
+
+  if (!trimmed) {
+    return '';
+  }
+
+  const hasProtocol = /^https?:\/\//i.test(trimmed);
+  const hasQueryOrHash = /[?#]/.test(trimmed);
+
+  if (!hasProtocol && !hasQueryOrHash) {
+    if (trimmed === '/') {
+      return '/';
+    }
+
+    return trimmed.replace(/\/+$/, '');
+  }
+
+  try {
+    if (hasProtocol) {
+      const parsed = new URL(trimmed);
+
+      if (parsed.pathname !== '/') {
+        parsed.pathname = parsed.pathname.replace(/\/+$/, '');
+      }
+
+      return parsed.toString();
+    }
+
+    const [pathnameWithSearch, hash = ''] = trimmed.split('#');
+    const [pathname = '', search = ''] = pathnameWithSearch.split('?');
+    const normalizedPathname =
+      pathname === '/' ? '/' : pathname.replace(/\/+$/, '');
+
+    return `${normalizedPathname}${search ? `?${search}` : ''}${
+      hash ? `#${hash}` : ''
+    }`;
+  } catch {
+    return trimmed;
+  }
+}
+
 function getSiteUrl() {
   return normalizeSiteUrl(
     process.env.NEXT_PUBLIC_SITE_URL ||
@@ -43,14 +85,20 @@ function toAbsoluteUrl(path = '', siteUrl = getSiteUrl()) {
   }
 
   if (/^https?:\/\//i.test(path)) {
-    return path;
+    return normalizePublicUrl(path);
   }
 
   if (!siteUrl) {
-    return path;
+    return normalizePublicUrl(path);
   }
 
-  return new URL(path, `${siteUrl}/`).toString();
+  return normalizePublicUrl(new URL(path, `${siteUrl}/`).toString());
 }
 
-export { getSiteUrl, getSiteUrlFromRequest, normalizeSiteUrl, toAbsoluteUrl };
+export {
+  getSiteUrl,
+  getSiteUrlFromRequest,
+  normalizePublicUrl,
+  normalizeSiteUrl,
+  toAbsoluteUrl,
+};
