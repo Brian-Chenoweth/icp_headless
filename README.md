@@ -172,13 +172,15 @@ Optional frontend/runtime variables:
 - `NEXT_PUBLIC_GA_ID`
   - Optional. If omitted, [`pages/_app.js`](/Users/bchenowe/Sites/icp_headless/pages/_app.js) falls back to `G-BRV0397C54`.
 - `NEXT_PUBLIC_SITE_URL`
-  - Optional. Preferred source for canonical URLs and sitemap URLs.
+  - Recommended for production. Preferred source for canonical URLs and sitemap URLs.
 - `SITE_URL`
   - Optional fallback for canonical URLs and sitemap URLs.
 - `VERCEL_PROJECT_PRODUCTION_URL`
   - Optional deployment-provided fallback.
 - `VERCEL_URL`
   - Optional deployment-provided fallback.
+- `NEXT_PUBLIC_WORDPRESS_URL`
+  - Used for WordPress/GraphQL connectivity only. Do not rely on this for canonicals on a custom frontend domain, or pages may emit canonicals to the backend WordPress host instead of the public site.
 
 ### Alt-text backfill script
 
