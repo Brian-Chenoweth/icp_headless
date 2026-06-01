@@ -2,7 +2,7 @@
 /**
  * Plugin Name: OpenAI Image Alt Text
  * Description: Generates alt text for newly uploaded images with the OpenAI Responses API.
- * Version: 0.1.0
+ * Version: 0.1.1
  * Author: Codex
  */
 
@@ -17,6 +17,12 @@ final class OpenAI_Image_Alt_Text {
 	const OPTION_MODEL = 'openai_image_alt_text_model';
 	const CRON_HOOK = 'openai_image_alt_text_process_attachment';
 	const DEFAULT_MODEL = 'gpt-4.1-mini';
+	const SUPPORTED_IMAGE_MIME_TYPES = array(
+		'image/jpeg',
+		'image/png',
+		'image/gif',
+		'image/webp',
+	);
 
 	public static function init() {
 		add_action('admin_init', array(__CLASS__, 'register_settings'));
@@ -143,8 +149,8 @@ final class OpenAI_Image_Alt_Text {
 		}
 
 		$mime_type = (string) get_post_mime_type($attachment_id);
-		$file_contents = file_get_contents($file_path);
-		if ($file_contents === false) {
+		$image_payload = self::prepare_image_payload($file_path, $mime_type);
+		if ($image_payload === null) {
 			return;
 		}
 
@@ -160,7 +166,7 @@ final class OpenAI_Image_Alt_Text {
 						),
 						array(
 							'type' => 'input_image',
-							'image_url' => 'data:' . $mime_type . ';base64,' . base64_encode($file_contents),
+							'image_url' => 'data:' . $image_payload['mime_type'] . ';base64,' . base64_encode($image_payload['contents']),
 						),
 					),
 				),
@@ -212,6 +218,51 @@ final class OpenAI_Image_Alt_Text {
 
 	private static function get_prompt() {
 		return "Write concise alt text for this image.\nRules:\n- Max 125 characters.\n- Describe only what is visibly important.\n- Do not start with \"Image of\" or \"Picture of\".\n- If the image is decorative, return exactly: \"\"\n- If text appears in the image and is essential, include it briefly.\nReturn only the alt text.";
+	}
+
+	private static function prepare_image_payload( $file_path, $mime_type ) {
+		if (in_array($mime_type, self::SUPPORTED_IMAGE_MIME_TYPES, true)) {
+			$file_contents = file_get_contents($file_path);
+			if ($file_contents === false) {
+				return null;
+			}
+
+			return array(
+				'contents' => $file_contents,
+				'mime_type' => $mime_type,
+			);
+		}
+
+		$image_editor = wp_get_image_editor($file_path);
+		if (is_wp_error($image_editor)) {
+			error_log('OpenAI Image Alt Text error: unsupported image format ' . $mime_type . ' and image editor failed: ' . $image_editor->get_error_message());
+			return null;
+		}
+
+		$temp_file = wp_tempnam($file_path);
+		if (!$temp_file) {
+			error_log('OpenAI Image Alt Text error: could not create a temporary file for image conversion.');
+			return null;
+		}
+
+		$saved = $image_editor->save($temp_file, 'image/jpeg');
+		if (is_wp_error($saved) || empty($saved['path'])) {
+			@unlink($temp_file);
+			error_log('OpenAI Image Alt Text error: could not convert ' . $mime_type . ' to image/jpeg for OpenAI processing.');
+			return null;
+		}
+
+		$file_contents = file_get_contents($saved['path']);
+		@unlink($saved['path']);
+
+		if ($file_contents === false) {
+			return null;
+		}
+
+		return array(
+			'contents' => $file_contents,
+			'mime_type' => 'image/jpeg',
+		);
 	}
 
 	private static function has_alt_text( $attachment_id ) {
