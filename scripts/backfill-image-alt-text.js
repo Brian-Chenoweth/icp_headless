@@ -1,9 +1,17 @@
 #!/usr/bin/env node
 
+const sharp = require('sharp');
+
 const DEFAULT_MODEL = process.env.OPENAI_MODEL || 'gpt-4.1-mini';
 const DEFAULT_PAGE_SIZE = 20;
 const DEFAULT_LIMIT = 25;
 const OPENAI_API_URL = 'https://api.openai.com/v1/responses';
+const SUPPORTED_IMAGE_MIME_TYPES = new Set([
+  'image/jpeg',
+  'image/png',
+  'image/gif',
+  'image/webp',
+]);
 const ALT_TEXT_PROMPT = `Write concise alt text for this image.
 Rules:
 - Max 125 characters.
@@ -110,10 +118,14 @@ async function loadImageAsDataUrl(imageUrl) {
 
   const contentType =
     response.headers.get('content-type') || 'application/octet-stream';
-  const arrayBuffer = await response.arrayBuffer();
-  const base64 = Buffer.from(arrayBuffer).toString('base64');
+  const buffer = Buffer.from(await response.arrayBuffer());
 
-  return `data:${contentType};base64,${base64}`;
+  if (SUPPORTED_IMAGE_MIME_TYPES.has(contentType)) {
+    return `data:${contentType};base64,${buffer.toString('base64')}`;
+  }
+
+  const convertedBuffer = await sharp(buffer).jpeg().toBuffer();
+  return `data:image/jpeg;base64,${convertedBuffer.toString('base64')}`;
 }
 
 function extractOutputText(payload) {
